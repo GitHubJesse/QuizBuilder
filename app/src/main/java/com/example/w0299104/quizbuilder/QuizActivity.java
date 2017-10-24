@@ -27,10 +27,9 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-//Comment
         String nameString;
         if(savedInstanceState == null){
-            Bundle extras  = getIntent().getExtras();
+            Bundle extras = getIntent().getExtras();
             if(extras == null){
                 nameString = null;
             } else {
@@ -40,8 +39,7 @@ public class QuizActivity extends AppCompatActivity {
             nameString = (String) savedInstanceState.getSerializable("name");
         }
 
-        Toast.makeText(this, nameString, Toast.LENGTH_SHORT).show();
-//        readAndParseRawText(rawTextfile);
+        readAndParseRawText(rawTextfile);
 
         textViewDefinition = (TextView) findViewById(R.id.textViewDefinition);
 
