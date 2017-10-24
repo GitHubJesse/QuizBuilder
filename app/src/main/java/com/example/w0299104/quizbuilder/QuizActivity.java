@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -26,6 +27,20 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+
+        String nameString;
+        if(savedInstanceState == null){
+            Bundle extras  = getIntent().getExtras();
+            if(extras == null){
+                nameString = null;
+            } else {
+                nameString = extras.getString("name");
+            }
+        } else {
+            nameString = (String) savedInstanceState.getSerializable("name");
+        }
+
+        Toast.makeText(this, nameString, Toast.LENGTH_SHORT).show();
 //        readAndParseRawText(rawTextfile);
 
         textViewDefinition = (TextView) findViewById(R.id.textViewDefinition);
@@ -92,7 +107,7 @@ public class QuizActivity extends AppCompatActivity {
                 //Right side = Answer
             } while (txtLine != null);
         } catch (IOException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         } finally {
             //Close the file
             try {
