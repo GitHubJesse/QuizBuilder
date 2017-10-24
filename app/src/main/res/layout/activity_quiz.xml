@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/textViewDefinition"
-        android:layout_width="379dp"
+        android:layout_width="0dp"
         android:layout_height="214dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
@@ -26,7 +26,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1" />
@@ -49,11 +48,12 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_editor_absoluteY="241dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnAnswer2"
+        android:layout_marginBottom="14dp" />
 
     <Button
         android:id="@+id/btnAnswer2"
-        android:layout_width="379dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
         android:background="@android:color/holo_orange_light"
         android:text="@string/secondAnswerBtn"
@@ -62,12 +62,14 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="330dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnAnswer4"
+        app:layout_constraintRight_toRightOf="@+id/btnAnswer1"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btnAnswer1" />
 
     <Button
         android:id="@+id/btnAnswer3"
-        android:layout_width="379dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/holo_green_light"
@@ -78,11 +80,12 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintRight_toRightOf="@+id/btnAnswer4"
+        app:layout_constraintLeft_toLeftOf="@+id/btnAnswer4" />
 
     <Button
         android:id="@+id/btnAnswer4"
-        android:layout_width="379dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
         android:background="@android:color/holo_red_light"
         android:text="@string/thirdAnswerBtn"
@@ -91,7 +94,9 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="421dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnAnswer3"
+        app:layout_constraintRight_toRightOf="@+id/btnAnswer2"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btnAnswer2" />
 
 </android.support.constraint.ConstraintLayout>

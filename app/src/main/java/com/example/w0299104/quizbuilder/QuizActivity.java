@@ -13,13 +13,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class QuizActivity extends AppCompatActivity {
 
-    String rawTextfile = "raw/definitions";
+    //String rawTextfile = "raw/definitions";
+
+    ArrayList<String> definitionList = new ArrayList<>();
+    ArrayList<String> answerList = new ArrayList<>();
 
     TextView textViewDefinition;
-
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
 
     @Override
@@ -39,7 +43,7 @@ public class QuizActivity extends AppCompatActivity {
             nameString = (String) savedInstanceState.getSerializable("name");
         }
 
-        readAndParseRawText(rawTextfile);
+        readAndParseRawText();
 
         textViewDefinition = (TextView) findViewById(R.id.textViewDefinition);
 
@@ -84,26 +88,43 @@ public class QuizActivity extends AppCompatActivity {
 //        }
     }
 
-    public void readAndParseRawText(String txtFile) {
-        InputStream is = null;
-        try {
-            //Open file to read from
-            is = new FileInputStream(txtFile);
+    public void readAndParseRawText(){//String txtFile) {
+        String txtLine = "";
+        ArrayList<String> lines = new ArrayList<>();
 
-            //Setup file to be read from
-            InputStreamReader iReader = new InputStreamReader(is);
-            BufferedReader buffer = new BufferedReader(iReader);
+        InputStream is = getResources().openRawResource(R.raw.definitions);
 
-            String txtLine;
+        StringBuilder buildString = new StringBuilder();
 
-            //Read each line of the file one by one into it's respective variable.
-            do {
-                txtLine = buffer.readLine();
-                //Use this line of text
-                //Parse
-                //Left side = Definition
-                //Right side = Answer
-            } while (txtLine != null);
+        ArrayList<String> list = new ArrayList<>();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+        try{
+            while((txtLine = br.readLine()) != null){
+
+                lines.add(txtLine);
+
+                //Toast.makeText(this, txtLine, Toast.LENGTH_LONG).show();
+            }
+
+            for(int i=0;i<lines.size();i++){
+
+                StringTokenizer tokens = new StringTokenizer(lines.get(i),":");
+
+                //This will tokenize the left side of the delimiter
+                String def = tokens.nextToken();
+
+                //This will tokenize the right side of the delimiter
+                String answer = tokens.nextToken();
+
+                definitionList.add(def);
+                answerList.add(answer);
+
+                Toast.makeText(this,definitionList.get(i),Toast.LENGTH_LONG).show();
+                Toast.makeText(this,answerList.get(i),Toast.LENGTH_LONG).show();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -114,5 +135,7 @@ public class QuizActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+
     }
 }
