@@ -41,7 +41,7 @@
         tools:layout_editor_absoluteY="306dp" />
 
     <Button
-        android:id="@+id/btnAnswer4"
+        android:id="@+id/btnAnswer3"
         android:layout_width="378dp"
         android:layout_height="77dp"
         android:background="@android:color/holo_green_light"
