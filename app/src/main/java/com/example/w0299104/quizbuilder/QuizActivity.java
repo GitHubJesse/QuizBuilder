@@ -27,7 +27,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-
+//Comment
         String nameString;
         if(savedInstanceState == null){
             Bundle extras  = getIntent().getExtras();
