@@ -1,5 +1,9 @@
 <resources>
+    Main Menu Strings
     <string name="app_name">QuizBuilder</string>
     <string name="mainMenuTitle">Android Quiz</string>
     <string name="mainMenuStart">START</string>
+
+    Quiz UI Strings
+    <string name="DefinitionUI">Definition</string>
 </resources>
