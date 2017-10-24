@@ -1,9 +1,15 @@
 <resources>
+
     Main Menu Strings
     <string name="app_name">QuizBuilder</string>
     <string name="mainMenuTitle">Android Quiz</string>
     <string name="mainMenuStart">START</string>
 
     Quiz UI Strings
-    <string name="DefinitionUI">Definition</string>
+    <string name="definitionUI">Definition</string>
+    <string name="firstAnswerBtn">A</string>
+    <string name="secondAnswerBtn">B</string>
+    <string name="thirdAnswerBtn">C</string>
+    <string name="fourthAnswerBtn">D</string>
+
 </resources>

@@ -7,13 +7,59 @@
     tools:context="com.example.w0299104.quizbuilder.QuizActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewDefinition"
         android:layout_width="378dp"
-        android:layout_height="162dp"
+        android:layout_height="166dp"
         android:layout_marginStart="130dp"
+        android:background="@android:color/holo_purple"
         android:gravity="center"
-        android:text="@string/DefinitionUI"
+        android:text="@string/definitionUI"
         android:textSize="30sp"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="30dp" />
+        tools:layout_editor_absoluteY="26dp" />
+
+    <Button
+        android:id="@+id/btnAnswer1"
+        android:layout_width="378dp"
+        android:layout_height="76dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="@string/firstAnswerBtn"
+        android:textColor="@android:color/background_dark"
+        android:textSize="50sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="207dp" />
+
+    <Button
+        android:id="@+id/btnAnswer2"
+        android:layout_width="378dp"
+        android:layout_height="77dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/secondAnswerBtn"
+        android:textColor="@android:color/background_dark"
+        android:textSize="50sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="306dp" />
+
+    <Button
+        android:id="@+id/btnAnswer4"
+        android:layout_width="378dp"
+        android:layout_height="77dp"
+        android:background="@android:color/holo_green_light"
+        android:text="@string/fourthAnswerBtn"
+        android:textColor="@android:color/background_dark"
+        android:textSize="50sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="500dp" />
+
+    <Button
+        android:id="@+id/btnAnswer4"
+        android:layout_width="378dp"
+        android:layout_height="76dp"
+        android:background="@android:color/holo_red_light"
+        android:text="@string/thirdAnswerBtn"
+        android:textColor="@android:color/background_dark"
+        android:textSize="50sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="405dp" />
+
 </android.support.constraint.ConstraintLayout>
