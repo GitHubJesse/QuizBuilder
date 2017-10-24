@@ -11,21 +11,30 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textViewTitle;
 
-    Button btnStart;
+    Button btnStartQuiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnStart = (Button) findViewById(R.id.btnStart);
+        btnStartQuiz = (Button) findViewById(R.id.btnStart);
 
-        btnStart.setOnClickListener(new View.OnClickListener() {
+        btnStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String intentToGame = "activity_quiz";
-                Intent intent = new Intent(Intent.))
+                Intent i = new Intent(MainActivity.this, QuizActivity.class);
+                //Send data along the intent
+                //i.putExtra();
+                startActivity(i);
             }
         });
+
+
     }
+
+
+
+
+
 }

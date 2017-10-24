@@ -11,18 +11,21 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="423dp"
-        android:layout_height="130dp"
+        android:layout_width="411dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
         android:background="?attr/actionModeSplitBackground"
         android:fontFamily="casual"
         android:gravity="center_vertical|center_horizontal"
+        android:includeFontPadding="false"
         android:text="@string/mainMenuTitle"
         android:textColor="@android:color/background_light"
         android:textSize="60sp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <Button
         android:id="@+id/btnStart"
@@ -38,7 +41,7 @@
         android:layout_marginEnd="27dp"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="167dp"
+        android:layout_marginBottom="168dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="27dp"
         android:layout_marginRight="27dp" />

@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
 
 public class QuizActivity extends AppCompatActivity {
 
-    String rawTextfile = "raw/rawText.txt";
+    String rawTextfile = "raw/definitions";
 
     TextView textViewDefinition;
 
@@ -26,7 +26,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        readAndParseRawText(rawTextfile);
+//        readAndParseRawText(rawTextfile);
 
         textViewDefinition = (TextView) findViewById(R.id.textViewDefinition);
 
@@ -62,6 +62,13 @@ public class QuizActivity extends AppCompatActivity {
 
             }
         });
+
+        //Used to collect data from intent.
+        //Wont be used here but I'm storing the method here for now
+//        Bundle extras = getIntent().getExtras();
+//        if (extras = != null) {
+//            blah
+//        }
     }
 
     public void readAndParseRawText(String txtFile) {
