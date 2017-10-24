@@ -27,10 +27,13 @@ public class MainActivity extends AppCompatActivity {
                 //Send data along the intent
                 //i.putExtra();
                 startActivity(i);
+                finishMainMenu();
             }
         });
+    }
 
-
+    public void finishMainMenu(){
+        this.finish();
     }
 
 
