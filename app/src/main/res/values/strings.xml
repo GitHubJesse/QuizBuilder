@@ -4,6 +4,7 @@
     <string name="app_name">QuizBuilder</string>
     <string name="mainMenuTitle">Android Quiz</string>
     <string name="mainMenuStart">START</string>
+    <string name="editTextName"></string>
 
     Quiz UI Strings
     <string name="definitionUI">Definition</string>
