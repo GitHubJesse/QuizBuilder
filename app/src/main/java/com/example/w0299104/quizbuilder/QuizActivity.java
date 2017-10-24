@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -64,22 +65,34 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void readAndParseRawText(String txtFile) {
+        InputStream is = null;
         try {
             //Open file to read from
-            InputStream is = new FileInputStream(txtFile);
+            is = new FileInputStream(txtFile);
 
-            //If file has data
-            if(is != null) {
+            //Setup file to be read from
+            InputStreamReader iReader = new InputStreamReader(is);
+            BufferedReader buffer = new BufferedReader(iReader);
 
-                //Setup file to be read from
-                InputStreamReader iReader = new InputStreamReader(is);
-                BufferedReader buffer = new BufferedReader(iReader);
+            String txtLine;
 
-                String txtLine;
+            //Read each line of the file one by one into it's respective variable.
+            do {
+                txtLine = buffer.readLine();
+                //Use this line of text
+                //Parse
+                //Left side = Definition
+                //Right side = Answer
+            } while (txtLine != null);
+        } catch (IOException e) {
+                e.printStackTrace();
+        } finally {
+            //Close the file
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
     }
 }
