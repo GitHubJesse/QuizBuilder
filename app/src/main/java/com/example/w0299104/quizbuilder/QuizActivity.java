@@ -130,7 +130,7 @@ public class QuizActivity extends AppCompatActivity {
         questionsAnswered++;
     }
 
-
+    //Very verbose function, will likely comment a lot to remember each steps purpose
     public void shuffleKeys(){
         int min = 0, max = definitionList.size();
 
