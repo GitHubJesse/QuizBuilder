@@ -171,14 +171,17 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         ArrayList<String> usedAnswers = new ArrayList<>();
-        usedAnswers = answerList;
         usedAnswers.add(correctAnswer);
 
-        for (;usedAnswers.size() == 4;){
+        for (int i=0;i<4;i++){
 
             int randWrongAnswer = r.nextInt(answerList.size());
 
             if(answerList.get(randWrongAnswer).equals(correctAnswer)){
+                //Prevent the answer value from escaping this loop until it is not the correct answer
+                do{
+                    randWrongAnswer = r.nextInt(answerList.size());
+                } while(answerList.get(randWrongAnswer).equals(correctAnswer));
                 continue;
             }
             if(usedAnswers.contains(answerList.get(randWrongAnswer))) {
@@ -220,8 +223,6 @@ public class QuizActivity extends AppCompatActivity {
             }
 
         }
-
-
 
         //Remove current definition so this question is not repeated
         definitionList.remove(randomIndex);
