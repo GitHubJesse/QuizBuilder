@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,6 +26,9 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class QuizActivity extends AppCompatActivity {
+
+
+    public static final String TAG = "QuizActivity";
 
     HashMap<String,String> questionHashMap = new HashMap<>();
     ArrayList<String> definitionList = new ArrayList<>();
@@ -228,12 +232,14 @@ public class QuizActivity extends AppCompatActivity {
 
         } catch (IOException e) {
             e.printStackTrace();
+            Log.v(TAG,"IO Exception");
         } finally {
             //Close the file
             try {
                 is.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.v(TAG,"IO Exception");
             }
         }
     }
