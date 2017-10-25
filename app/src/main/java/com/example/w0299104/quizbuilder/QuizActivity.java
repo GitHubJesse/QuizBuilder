@@ -34,11 +34,12 @@ public class QuizActivity extends AppCompatActivity {
     ArrayList<String> definitionList = new ArrayList<>();
     ArrayList<String> answerList = new ArrayList<>();
 
-    ArrayList<String> usedKeys = new ArrayList<>();
+    //ArrayList<String> usedKeys = new ArrayList<>();
 
     int questionsAnswered = 0;
     String nameString;
     int score = 0;
+    String currentCorrectAnswer;
 
     TextView textViewDefinition;
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
@@ -71,7 +72,7 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer();
+                checkAnswer(1);
                 if(questionsAnswered >= 10){
                     displayScoreScreen(view);
                 } else {
@@ -83,7 +84,7 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer();
+                checkAnswer(2);
                 if(questionsAnswered >= 10){
                     displayScoreScreen(view);
                 } else {
@@ -95,7 +96,7 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer();
+                checkAnswer(3);
                 if(questionsAnswered >= 10){
                     displayScoreScreen(view);
                 } else {
@@ -107,7 +108,7 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer();
+                checkAnswer(4);
                 if(questionsAnswered >= 10){
                     displayScoreScreen(view);
                 } else {
@@ -117,17 +118,46 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         shuffleKeys();
-
-        //Used to collect data from intent.
-        //Wont be used here but I'm storing the method here for now
-//        Bundle extras = getIntent().getExtras();
-//        if (extras = != null) {
-//            blah
-//        }
     }//end of onCreate()
 
-    public void checkAnswer(){
+    public void checkAnswer(int buttonID){
         questionsAnswered++;
+
+        boolean answerCorrect = false;
+
+        switch (buttonID){
+            case 1:
+                if (btnAnswer1.getText().toString().equals(currentCorrectAnswer)) {
+                    answerCorrect = true;
+                    score++;
+                }
+                break;
+            case 2:
+                if (btnAnswer2.getText().toString().equals(currentCorrectAnswer)) {
+                    answerCorrect = true;
+                    score++;
+                }
+                break;
+            case 3:
+                if (btnAnswer3.getText().toString().equals(currentCorrectAnswer)) {
+                    answerCorrect = true;
+                    score++;
+                }
+                break;
+            case 4:
+                if (btnAnswer4.getText().toString().equals(currentCorrectAnswer)) {
+                    answerCorrect = true;
+                    score++;
+                }
+                break;
+        }
+
+        if (answerCorrect) {
+            Toast.makeText(this,"Correct",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this,"Incorrect",Toast.LENGTH_LONG).show();
+        }
+
     }
 
     //Very verbose function, will likely comment a lot to remember each steps purpose
@@ -172,8 +202,9 @@ public class QuizActivity extends AppCompatActivity {
 
         ArrayList<String> usedAnswers = new ArrayList<>();
         usedAnswers.add(correctAnswer);
+        currentCorrectAnswer = correctAnswer;
 
-        for (int i=0;i<4;i++){
+        for (int a=0;a<4;a++){
 
             int randWrongAnswer = r.nextInt(answerList.size());
 
@@ -190,47 +221,44 @@ public class QuizActivity extends AppCompatActivity {
             usedAnswers.add(answerList.get(randWrongAnswer));
         }
 
-        for(int i=0;i<usedAnswers.size();i++){
-            switch (i) {
+        for(int b=0;b<usedAnswers.size();b++){
+            switch (b) {
                 case 1:
-                    if(i == correctAnswerLocation) {
+                    if(b == correctAnswerLocation) {
                         continue;
                     } else {
-                        btnAnswer1.setText(usedAnswers.get(i));
+                        btnAnswer1.setText(usedAnswers.get(b));
                     }
                     break;
                 case 2:
-                    if(i == correctAnswerLocation) {
+                    if(b == correctAnswerLocation) {
                         continue;
                     } else {
-                        btnAnswer2.setText(usedAnswers.get(i));
+                        btnAnswer2.setText(usedAnswers.get(b));
                     }
                     break;
                 case 3:
-                    if(i == correctAnswerLocation) {
+                    if(b == correctAnswerLocation) {
                         continue;
                     } else {
-                        btnAnswer3.setText(usedAnswers.get(i));
+                        btnAnswer3.setText(usedAnswers.get(b));
                     }
                     break;
                 case 4:
-                    if(i == correctAnswerLocation) {
+                    if(b == correctAnswerLocation) {
                         continue;
                     } else {
-                        btnAnswer4.setText(usedAnswers.get(i));
+                        btnAnswer4.setText(usedAnswers.get(b));
                     }
                     break;
             }
 
         }
-
         //Remove current definition so this question is not repeated
         definitionList.remove(randomIndex);
     }
 
     public void displayScoreScreen(View v){
-        //Hardcode test
-        score = 4;
         String scoreString = Integer.toString(score);
 
         scoreString = nameString + ", you scored " + scoreString + "/10";
