@@ -1,6 +1,7 @@
 package com.example.w0299104.quizbuilder;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,7 @@ public class QuizActivity extends AppCompatActivity {
     ArrayList<String> usedKeys = new ArrayList<>();
     ArrayList<String> usedAnswers = new ArrayList<>();
 
+    String nameString;
     int score = 0;
 
     TextView textViewDefinition;
@@ -42,7 +44,6 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        String nameString;
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
             if(extras == null){
@@ -66,6 +67,9 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (definitionList.size() < 1){
+                    //displayScoreScreen(view);
+                }
                 shuffleKeys();
             }
         });
@@ -73,6 +77,9 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (definitionList.size() < 1){
+                    //displayScoreScreen(view);
+                }
                 shuffleKeys();
             }
         });
@@ -80,6 +87,9 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (definitionList.size() < 1){
+                    //displayScoreScreen(view);
+                }
                 shuffleKeys();
             }
         });
@@ -87,6 +97,9 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (definitionList.size() < 1){
+                    //displayScoreScreen(view);
+                }
                 shuffleKeys();
             }
         });
@@ -103,9 +116,6 @@ public class QuizActivity extends AppCompatActivity {
 
 
     public void shuffleKeys(){
-        if (definitionList.size() < 1){
-            displayScoreScreen();
-        }
         int min = 0, max = definitionList.size();
 
         //int randomIndex = ThreadLocalRandom.current().nextInt(min, definitionList.size() + 1);
@@ -127,16 +137,17 @@ public class QuizActivity extends AppCompatActivity {
         definitionList.remove(randomIndex);
     }
 
-    public void displayScoreScreen(){
+    public void displayScoreScreen(View v){
         //Hardcode test
         score = 4;
+        String scoreString = Integer.toString(score);
 
-        Intent i = new Intent(QuizActivity.this, ScoreActivity.class);
-        //Send "score" to the Score display screen to be displayed using snackbar
-        i.putExtra("score",score);
 
-        startActivity(i);
-        finishQuiz();
+        //Snackbar.make(this,scoreString,Snackbar.LENGTH_SHORT).show();
+        Snackbar snackbar = Snackbar
+                .make(v, nameString + ", you scored " + scoreString + "/10", Snackbar.LENGTH_LONG);
+
+        snackbar.show();
     }
 
     public void readAndParseRawText(){//String txtFile) {
