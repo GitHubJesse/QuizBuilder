@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
 
     TextView textViewTitle;
+    TextView textViewEmptyName;
     EditText editTextName;
     Button btnStartQuiz;
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnStartQuiz = (Button) findViewById(R.id.btnStart);
         editTextName = (EditText)  findViewById(R.id.editTextName);
+
 
         btnStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
             if(!inputName.equals("")){
                 startActivity(i);
                 finishMainMenu();
+            } else {
+                Toast.makeText(MainActivity.this,"You must enter your name to continue.",Toast.LENGTH_LONG).show();
             }
 
             }
