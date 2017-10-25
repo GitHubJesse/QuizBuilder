@@ -11,8 +11,8 @@
 
     <TextView
         android:id="@+id/textViewDefinition"
-        android:layout_width="0dp"
-        android:layout_height="214dp"
+        android:layout_width="328dp"
+        android:layout_height="176dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -22,7 +22,7 @@
         android:gravity="center"
         android:text="@string/definitionUI"
         android:textSize="30sp"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,6 +34,7 @@
         android:id="@+id/btnAnswer1"
         android:layout_width="0dp"
         android:layout_height="75dp"
+        android:layout_marginBottom="14dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -42,14 +43,13 @@
         android:text="@string/firstAnswerBtn"
         android:textColor="@android:color/background_dark"
         android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAnswer2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/btnAnswer2"
-        android:layout_marginBottom="14dp" />
+        tools:layout_constraintRight_creator="1" />
 
     <Button
         android:id="@+id/btnAnswer2"
