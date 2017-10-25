@@ -37,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
                 //Send "name" as the access key and the value of inputName to be accessed by the key
                 i.putExtra("name",inputName);
 
-                startActivity(i);
-                finishMainMenu();
+                if(inputName != null){
+                    startActivity(i);
+                    finishMainMenu();
+                }
+
             }
         });
     }
