@@ -99,7 +99,7 @@ public class QuizActivity extends AppCompatActivity {
     public void shuffleAnswers(){
         Object[] shuffleKeys = questionHashMap.keySet().toArray();
         Object key = shuffleKeys[new Random().nextInt(shuffleKeys.length)];
-        Toast.makeText(this,key+" :: " +questionHashMap.get(key),Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,key+" :: " +questionHashMap.get(key),Toast.LENGTH_LONG).show();
         btnAnswer1.setText(questionHashMap.get(key));
         btnAnswer2.setText(questionHashMap.get(key));
         btnAnswer3.setText(questionHashMap.get(key));
