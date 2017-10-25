@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -60,30 +61,32 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                shuffleAnswers();
             }
         });
 
         btnAnswer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                shuffleAnswers();
             }
         });
 
         btnAnswer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                shuffleAnswers();
             }
         });
 
         btnAnswer4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                shuffleAnswers();
             }
         });
+
+        shuffleAnswers();
 
         //Used to collect data from intent.
         //Wont be used here but I'm storing the method here for now
@@ -91,6 +94,16 @@ public class QuizActivity extends AppCompatActivity {
 //        if (extras = != null) {
 //            blah
 //        }
+    }//end of onCreate()
+
+    public void shuffleAnswers(){
+        Object[] shuffleKeys = questionHashMap.keySet().toArray();
+        Object key = shuffleKeys[new Random().nextInt(shuffleKeys.length)];
+        Toast.makeText(this,key+" :: " +questionHashMap.get(key),Toast.LENGTH_LONG).show();
+        btnAnswer1.setText(questionHashMap.get(key));
+        btnAnswer2.setText(questionHashMap.get(key));
+        btnAnswer3.setText(questionHashMap.get(key));
+        btnAnswer4.setText(questionHashMap.get(key));
     }
 
     public void readAndParseRawText(){//String txtFile) {
@@ -143,7 +156,7 @@ public class QuizActivity extends AppCompatActivity {
                 Map.Entry mapEntry = (Map.Entry)iterator.next();
 
                 //DEBUG Displays the Key value and Answer value to confirm that it was done correctly.
-                Toast.makeText(this,"Key is: "+ mapEntry.getKey() + "\nValue is: "+mapEntry.getValue()+"\n",Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,"Key is: "+ mapEntry.getKey() + "\nValue is: "+mapEntry.getValue()+"\n",Toast.LENGTH_LONG).show();
             }
 
 

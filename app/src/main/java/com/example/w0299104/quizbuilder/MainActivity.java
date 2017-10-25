@@ -24,9 +24,6 @@ public class MainActivity extends AppCompatActivity {
         btnStartQuiz = (Button) findViewById(R.id.btnStart);
         editTextName = (EditText)  findViewById(R.id.editTextName);
 
-
-
-
         btnStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
