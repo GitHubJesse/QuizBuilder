@@ -327,14 +327,14 @@ public class QuizActivity extends AppCompatActivity {
 
         } catch (IOException e) {
             e.printStackTrace();
-            Log.v(TAG,"IO Exception");
+            Log.v(TAG,"IO Exception   -   "+e.getMessage());
         } finally {
             //Close the file
             try {
                 is.close();
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.v(TAG,"IO Exception");
+                Log.v(TAG,"IO Exception   -   "+e.getMessage());
             }
         }
     }
