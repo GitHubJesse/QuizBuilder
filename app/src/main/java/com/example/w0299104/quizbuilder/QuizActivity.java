@@ -14,12 +14,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class QuizActivity extends AppCompatActivity {
 
     //String rawTextfile = "raw/definitions";
 
+    HashMap<String,String> questionHashMap = new HashMap<>();
     ArrayList<String> definitionList = new ArrayList<>();
     ArrayList<String> answerList = new ArrayList<>();
 
@@ -114,16 +116,22 @@ public class QuizActivity extends AppCompatActivity {
 
                 //This will tokenize the left side of the delimiter
                 String def = tokens.nextToken();
-
                 //This will tokenize the right side of the delimiter
                 String answer = tokens.nextToken();
 
+                //Add the Definition and Answer of this line to the respective list with the index equal to i
                 definitionList.add(def);
                 answerList.add(answer);
 
-                Toast.makeText(this,definitionList.get(i),Toast.LENGTH_LONG).show();
-                Toast.makeText(this,answerList.get(i),Toast.LENGTH_LONG).show();
+                //Assign each value into the array and group them by index number.
+                //The definition will be the key and the answer will be the value
+                questionHashMap.put(definitionList.get(i),answerList.get(i));
+
+                //Displays (definition +" is "+ answer). This proves that the parsing worked perfectly
+                //Toast.makeText(this,definitionList.get(i)+" is "+answerList.get(i),Toast.LENGTH_LONG).show();
             }
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
