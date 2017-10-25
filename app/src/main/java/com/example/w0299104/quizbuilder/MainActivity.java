@@ -30,17 +30,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Collect input from editTextName to send to the QuizActivity screen
-                String inputName = editTextName.getText().toString();
+            //Collect input from editTextName to send to the QuizActivity screen
+            String inputName = editTextName.getText().toString();
 
-                Intent i = new Intent(MainActivity.this, QuizActivity.class);
-                //Send "name" as the access key and the value of inputName to be accessed by the key
-                i.putExtra("name",inputName);
+            Intent i = new Intent(MainActivity.this, QuizActivity.class);
+            //Send "name" as the access key and the value of inputName to be accessed by the key
+            i.putExtra("name",inputName);
 
-                if(inputName != null){
-                    startActivity(i);
-                    finishMainMenu();
-                }
+            if(!inputName.equals("")){
+                startActivity(i);
+                finishMainMenu();
+            }
 
             }
         });
