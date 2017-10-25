@@ -35,7 +35,6 @@ public class QuizActivity extends AppCompatActivity {
     ArrayList<String> answerList = new ArrayList<>();
 
     ArrayList<String> usedKeys = new ArrayList<>();
-    ArrayList<String> usedAnswers = new ArrayList<>();
 
     int questionsAnswered = 0;
     String nameString;
@@ -48,8 +47,6 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
-        //definitionList.add(0,"Empty Placeholder");
 
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
@@ -144,12 +141,10 @@ public class QuizActivity extends AppCompatActivity {
         int randomIndex = r.nextInt(max - min) + min;
 
         String newDefinition = definitionList.get(randomIndex);
-        //Toast.makeText(this,randomIndex+" "+newDefinition,Toast.LENGTH_LONG).show();
 
 
         Object[] shuffleKeys = questionHashMap.keySet().toArray();
         Object key = shuffleKeys[new Random().nextInt(shuffleKeys.length)];
-        //Toast.makeText(this,key+" :: " +questionHashMap.get(key),Toast.LENGTH_LONG).show();
 
         //Assign each Definition per button press until 10 answers submitted
         textViewDefinition.setText(newDefinition);
@@ -175,8 +170,56 @@ public class QuizActivity extends AppCompatActivity {
                 break;
         }
 
+        ArrayList<String> usedAnswers = new ArrayList<>();
+        usedAnswers = answerList;
+        usedAnswers.add(correctAnswer);
 
+        for (;usedAnswers.size() == 4;){
 
+            int randWrongAnswer = r.nextInt(answerList.size());
+
+            if(answerList.get(randWrongAnswer).equals(correctAnswer)){
+                continue;
+            }
+            if(usedAnswers.contains(answerList.get(randWrongAnswer))) {
+                continue;
+            }
+            usedAnswers.add(answerList.get(randWrongAnswer));
+        }
+
+        for(int i=0;i<usedAnswers.size();i++){
+            switch (i) {
+                case 1:
+                    if(i == correctAnswerLocation) {
+                        continue;
+                    } else {
+                        btnAnswer1.setText(usedAnswers.get(i));
+                    }
+                    break;
+                case 2:
+                    if(i == correctAnswerLocation) {
+                        continue;
+                    } else {
+                        btnAnswer2.setText(usedAnswers.get(i));
+                    }
+                    break;
+                case 3:
+                    if(i == correctAnswerLocation) {
+                        continue;
+                    } else {
+                        btnAnswer3.setText(usedAnswers.get(i));
+                    }
+                    break;
+                case 4:
+                    if(i == correctAnswerLocation) {
+                        continue;
+                    } else {
+                        btnAnswer4.setText(usedAnswers.get(i));
+                    }
+                    break;
+            }
+
+        }
 
 
 
