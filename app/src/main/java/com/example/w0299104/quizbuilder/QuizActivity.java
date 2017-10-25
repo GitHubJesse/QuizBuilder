@@ -1,5 +1,6 @@
 package com.example.w0299104.quizbuilder;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,14 +21,18 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class QuizActivity extends AppCompatActivity {
-
-    //String rawTextfile = "raw/definitions";
 
     HashMap<String,String> questionHashMap = new HashMap<>();
     ArrayList<String> definitionList = new ArrayList<>();
     ArrayList<String> answerList = new ArrayList<>();
+
+    ArrayList<String> usedKeys = new ArrayList<>();
+    ArrayList<String> usedAnswers = new ArrayList<>();
+
+    int score = 0;
 
     TextView textViewDefinition;
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
@@ -61,32 +66,32 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shuffleAnswers();
+                shuffleKeys();
             }
         });
 
         btnAnswer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shuffleAnswers();
+                shuffleKeys();
             }
         });
 
         btnAnswer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shuffleAnswers();
+                shuffleKeys();
             }
         });
 
         btnAnswer4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shuffleAnswers();
+                shuffleKeys();
             }
         });
 
-        shuffleAnswers();
+        shuffleKeys();
 
         //Used to collect data from intent.
         //Wont be used here but I'm storing the method here for now
@@ -96,14 +101,42 @@ public class QuizActivity extends AppCompatActivity {
 //        }
     }//end of onCreate()
 
-    public void shuffleAnswers(){
+
+    public void shuffleKeys(){
+        if (definitionList.size() < 1){
+            displayScoreScreen();
+        }
+        int min = 0, max = definitionList.size();
+
+        //int randomIndex = ThreadLocalRandom.current().nextInt(min, definitionList.size() + 1);
+        Random r = new Random();
+
+        int randomIndex = r.nextInt(max - min) + min;
+
+        String newDefinition = definitionList.get(randomIndex);
+        Toast.makeText(this,randomIndex+" "+newDefinition,Toast.LENGTH_LONG).show();
+
+
         Object[] shuffleKeys = questionHashMap.keySet().toArray();
         Object key = shuffleKeys[new Random().nextInt(shuffleKeys.length)];
         //Toast.makeText(this,key+" :: " +questionHashMap.get(key),Toast.LENGTH_LONG).show();
-        btnAnswer1.setText(questionHashMap.get(key));
-        btnAnswer2.setText(questionHashMap.get(key));
-        btnAnswer3.setText(questionHashMap.get(key));
-        btnAnswer4.setText(questionHashMap.get(key));
+        btnAnswer1.setText(questionHashMap.get(newDefinition));
+        btnAnswer2.setText(questionHashMap.get(newDefinition));
+        btnAnswer3.setText(questionHashMap.get(newDefinition));
+        btnAnswer4.setText(questionHashMap.get(newDefinition));
+        definitionList.remove(randomIndex);
+    }
+
+    public void displayScoreScreen(){
+        //Hardcode test
+        score = 4;
+
+        Intent i = new Intent(QuizActivity.this, ScoreActivity.class);
+        //Send "score" to the Score display screen to be displayed using snackbar
+        i.putExtra("score",score);
+
+        startActivity(i);
+        finishQuiz();
     }
 
     public void readAndParseRawText(){//String txtFile) {
@@ -170,7 +203,8 @@ public class QuizActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-
+    }
+    public void finishQuiz(){
+        this.finish();
     }
 }
