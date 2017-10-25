@@ -15,6 +15,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class QuizActivity extends AppCompatActivity {
@@ -127,10 +130,21 @@ public class QuizActivity extends AppCompatActivity {
                 //The definition will be the key and the answer will be the value
                 questionHashMap.put(definitionList.get(i),answerList.get(i));
 
-                //Displays (definition +" is "+ answer). This proves that the parsing worked perfectly
+                //DEBUG Displays (definition +" is "+ answer). This proves that the parsing worked perfectly
                 //Toast.makeText(this,definitionList.get(i)+" is "+answerList.get(i),Toast.LENGTH_LONG).show();
             }
 
+            //Creates an entry set of the HashMap values
+            Set set = questionHashMap.entrySet();
+            //Initiate iterator to go through the HashMap
+            Iterator iterator = set.iterator();
+            //While there is still more HashMap values, keep iterating though the HaspMap
+            while (iterator.hasNext()){
+                Map.Entry mapEntry = (Map.Entry)iterator.next();
+
+                //DEBUG Displays the Key value and Answer value to confirm that it was done correctly.
+                Toast.makeText(this,"Key is: "+ mapEntry.getKey() + "\nValue is: "+mapEntry.getValue()+"\n",Toast.LENGTH_LONG).show();
+            }
 
 
         } catch (IOException e) {
