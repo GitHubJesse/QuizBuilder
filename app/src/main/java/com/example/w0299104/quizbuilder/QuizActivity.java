@@ -150,11 +150,37 @@ public class QuizActivity extends AppCompatActivity {
         Object[] shuffleKeys = questionHashMap.keySet().toArray();
         Object key = shuffleKeys[new Random().nextInt(shuffleKeys.length)];
         //Toast.makeText(this,key+" :: " +questionHashMap.get(key),Toast.LENGTH_LONG).show();
+
+        //Assign each Definition per button press until 10 answers submitted
         textViewDefinition.setText(newDefinition);
-        btnAnswer1.setText(questionHashMap.get(newDefinition));
-        btnAnswer2.setText(questionHashMap.get(newDefinition));
-        btnAnswer3.setText(questionHashMap.get(newDefinition));
-        btnAnswer4.setText(questionHashMap.get(newDefinition));
+
+        String correctAnswer = questionHashMap.get(newDefinition);
+
+        //This randomizes which button the correct answer will appear on
+        int correctAnswerLocation = r.nextInt(5 - 1) + 1;
+
+        //Take random int 1-4 and use that to assign the location of the correct answer
+        switch (correctAnswerLocation){
+            case 1:
+                btnAnswer1.setText(correctAnswer);
+                break;
+            case 2:
+                btnAnswer2.setText(correctAnswer);
+                break;
+            case 3:
+                btnAnswer3.setText(correctAnswer);
+                break;
+            case 4:
+                btnAnswer4.setText(correctAnswer);
+                break;
+        }
+
+
+
+
+
+
+        //Remove current definition so this question is not repeated
         definitionList.remove(randomIndex);
     }
 
