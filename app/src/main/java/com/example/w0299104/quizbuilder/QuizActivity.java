@@ -33,6 +33,7 @@ public class QuizActivity extends AppCompatActivity {
     ArrayList<String> usedKeys = new ArrayList<>();
     ArrayList<String> usedAnswers = new ArrayList<>();
 
+    int questionsAnswered = 0;
     String nameString;
     int score = 0;
 
@@ -43,6 +44,8 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        //definitionList.add(0,"Empty Placeholder");
 
         if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
@@ -67,40 +70,48 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (definitionList.size() < 1){
-                    //displayScoreScreen(view);
+                checkAnswer();
+                if(questionsAnswered >= 10){
+                    displayScoreScreen(view);
+                } else {
+                    shuffleKeys();
                 }
-                shuffleKeys();
             }
         });
 
         btnAnswer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (definitionList.size() < 1){
-                    //displayScoreScreen(view);
+                checkAnswer();
+                if(questionsAnswered >= 10){
+                    displayScoreScreen(view);
+                } else {
+                    shuffleKeys();
                 }
-                shuffleKeys();
             }
         });
 
         btnAnswer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (definitionList.size() < 1){
-                    //displayScoreScreen(view);
+                checkAnswer();
+                if(questionsAnswered >= 10){
+                    displayScoreScreen(view);
+                } else {
+                    shuffleKeys();
                 }
-                shuffleKeys();
             }
         });
 
         btnAnswer4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (definitionList.size() < 1){
-                    //displayScoreScreen(view);
+                checkAnswer();
+                if(questionsAnswered >= 10){
+                    displayScoreScreen(view);
+                } else {
+                    shuffleKeys();
                 }
-                shuffleKeys();
             }
         });
 
@@ -114,11 +125,16 @@ public class QuizActivity extends AppCompatActivity {
 //        }
     }//end of onCreate()
 
+    public void checkAnswer(){
+        questionsAnswered++;
+    }
+
 
     public void shuffleKeys(){
         int min = 0, max = definitionList.size();
 
         //int randomIndex = ThreadLocalRandom.current().nextInt(min, definitionList.size() + 1);
+
         Random r = new Random();
 
         int randomIndex = r.nextInt(max - min) + min;
@@ -130,6 +146,7 @@ public class QuizActivity extends AppCompatActivity {
         Object[] shuffleKeys = questionHashMap.keySet().toArray();
         Object key = shuffleKeys[new Random().nextInt(shuffleKeys.length)];
         //Toast.makeText(this,key+" :: " +questionHashMap.get(key),Toast.LENGTH_LONG).show();
+        textViewDefinition.setText(newDefinition);
         btnAnswer1.setText(questionHashMap.get(newDefinition));
         btnAnswer2.setText(questionHashMap.get(newDefinition));
         btnAnswer3.setText(questionHashMap.get(newDefinition));
@@ -142,11 +159,16 @@ public class QuizActivity extends AppCompatActivity {
         score = 4;
         String scoreString = Integer.toString(score);
 
+        Intent i = new Intent(QuizActivity.this, ScoreDisplay.class);
+        //Send "name" as the access key and the value of inputName to be accessed by the key
+        i.putExtra("score",scoreString);
+
+        startActivity(i);
+        finishQuiz();
 
         //Snackbar.make(this,scoreString,Snackbar.LENGTH_SHORT).show();
         Snackbar snackbar = Snackbar
                 .make(v, nameString + ", you scored " + scoreString + "/10", Snackbar.LENGTH_LONG);
-
         snackbar.show();
     }
 
