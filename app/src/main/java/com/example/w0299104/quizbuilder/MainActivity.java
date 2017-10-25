@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Comment to add commit
     public static final String TAG = "MainActivity";
 
     TextView textViewTitle;
