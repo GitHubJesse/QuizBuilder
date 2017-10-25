@@ -13,4 +13,6 @@
     <string name="thirdAnswerBtn">C</string>
     <string name="fourthAnswerBtn">D</string>
 
+    <string name="restart">Play Again</string>
+
 </resources>
