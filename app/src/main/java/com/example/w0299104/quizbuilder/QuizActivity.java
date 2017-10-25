@@ -27,7 +27,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class QuizActivity extends AppCompatActivity {
 
-//Comment to github push a comment of what to do
+//TODO Comment to github push a comment of what to do
     public static final String TAG = "QuizActivity";
 
     HashMap<String,String> questionHashMap = new HashMap<>();
