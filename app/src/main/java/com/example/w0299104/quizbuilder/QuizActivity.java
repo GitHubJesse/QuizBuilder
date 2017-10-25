@@ -1,7 +1,7 @@
 package com.example.w0299104.quizbuilder;
 
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
+//import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -144,7 +144,7 @@ public class QuizActivity extends AppCompatActivity {
         int randomIndex = r.nextInt(max - min) + min;
 
         String newDefinition = definitionList.get(randomIndex);
-        Toast.makeText(this,randomIndex+" "+newDefinition,Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,randomIndex+" "+newDefinition,Toast.LENGTH_LONG).show();
 
 
         Object[] shuffleKeys = questionHashMap.keySet().toArray();
@@ -163,17 +163,14 @@ public class QuizActivity extends AppCompatActivity {
         score = 4;
         String scoreString = Integer.toString(score);
 
+        scoreString = nameString + ", you scored " + scoreString + "/10";
+
         Intent i = new Intent(QuizActivity.this, ScoreDisplay.class);
         //Send "name" as the access key and the value of inputName to be accessed by the key
         i.putExtra("score",scoreString);
 
         startActivity(i);
         finishQuiz();
-
-        //Snackbar.make(this,scoreString,Snackbar.LENGTH_SHORT).show();
-        Snackbar snackbar = Snackbar
-                .make(v, nameString + ", you scored " + scoreString + "/10", Snackbar.LENGTH_LONG);
-        snackbar.show();
     }
 
     public void readAndParseRawText(){//String txtFile) {

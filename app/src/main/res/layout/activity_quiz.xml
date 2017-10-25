@@ -21,7 +21,7 @@
         android:background="@android:color/white"
         android:gravity="center"
         android:text="@string/definitionUI"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
         android:background="@android:color/holo_blue_light"
         android:text="@string/firstAnswerBtn"
         android:textColor="@android:color/background_dark"
-        android:textSize="50sp"
+        android:textSize="42sp"
         app:layout_constraintBottom_toTopOf="@+id/btnAnswer2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -54,17 +54,17 @@
         android:id="@+id/btnAnswer2"
         android:layout_width="0dp"
         android:layout_height="75dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/holo_orange_light"
         android:text="@string/secondAnswerBtn"
         android:textColor="@android:color/background_dark"
-        android:textSize="50sp"
+        android:textSize="42sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAnswer4"
+        app:layout_constraintLeft_toLeftOf="@+id/btnAnswer1"
+        app:layout_constraintRight_toRightOf="@+id/btnAnswer1"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/btnAnswer4"
-        app:layout_constraintRight_toRightOf="@+id/btnAnswer1"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintLeft_toLeftOf="@+id/btnAnswer1" />
+        tools:layout_constraintRight_creator="1" />
 
     <Button
         android:id="@+id/btnAnswer3"
@@ -74,28 +74,28 @@
         android:background="@android:color/holo_green_light"
         android:text="@string/fourthAnswerBtn"
         android:textColor="@android:color/background_dark"
-        android:textSize="50sp"
+        android:textSize="42sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/btnAnswer4"
+        app:layout_constraintRight_toRightOf="@+id/btnAnswer4"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/btnAnswer4"
-        app:layout_constraintLeft_toLeftOf="@+id/btnAnswer4" />
+        tools:layout_constraintRight_creator="1" />
 
     <Button
         android:id="@+id/btnAnswer4"
         android:layout_width="0dp"
         android:layout_height="75dp"
+        android:layout_marginBottom="15dp"
         android:background="@android:color/holo_red_light"
         android:text="@string/thirdAnswerBtn"
         android:textColor="@android:color/background_dark"
-        android:textSize="50sp"
+        android:textSize="42sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAnswer3"
+        app:layout_constraintLeft_toLeftOf="@+id/btnAnswer2"
+        app:layout_constraintRight_toRightOf="@+id/btnAnswer2"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/btnAnswer3"
-        app:layout_constraintRight_toRightOf="@+id/btnAnswer2"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintLeft_toLeftOf="@+id/btnAnswer2" />
+        tools:layout_constraintRight_creator="1" />
 
 </android.support.constraint.ConstraintLayout>
