@@ -122,7 +122,11 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        for (int shuffles = 0;shuffles<10;shuffles++){
+            softShuffle();
+        }
         shuffleKeys();
+
     }//end of onCreate()
 
     public void checkAnswer(int buttonID){
@@ -158,11 +162,13 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         if (answerCorrect) {
-            Toast.makeText(this,"Correct",Toast.LENGTH_LONG).show();
-            textViewLastAnswer.setTextColor(Color.parseColor("#32CD32"));
+            //Toast.makeText(this,"Correct",Toast.LENGTH_LONG).show();
+            textViewLastAnswer.setTextColor(Color.parseColor("#34CC1C"));
+            textViewLastAnswer.setBackgroundColor(Color.parseColor("#C6DEDB"));
         } else {
-            Toast.makeText(this,"Incorrect",Toast.LENGTH_LONG).show();
-            textViewLastAnswer.setTextColor(Color.parseColor("#ff0000"));
+            //Toast.makeText(this,"Incorrect",Toast.LENGTH_LONG).show();
+            textViewLastAnswer.setTextColor(Color.parseColor("#CC3B1C"));
+            textViewLastAnswer.setBackgroundColor(Color.parseColor("#C6DEDB"));
         }
         textViewLastAnswer.setText(textViewDefinition.getText().toString()+"'s salary is "+currentCorrectAnswer);
     }
@@ -259,7 +265,6 @@ public class QuizActivity extends AppCompatActivity {
                     }
                     break;
             }
-
         }
         //Remove current definition so this question is not repeated
         definitionList.remove(randomIndex);
@@ -268,7 +273,7 @@ public class QuizActivity extends AppCompatActivity {
     public void displayScoreScreen(View v){
         String scoreString = Integer.toString(score);
 
-        scoreString = nameString + ", you scored " + scoreString + "/10";
+        scoreString = nameString + ", you scored " + scoreString + "/"+totalQuestions;
 
         Intent i = new Intent(QuizActivity.this, ScoreDisplay.class);
         //Send "name" as the access key and the value of inputName to be accessed by the key
@@ -356,5 +361,99 @@ public class QuizActivity extends AppCompatActivity {
     }
     public void finishQuiz(){
         this.finish();
+    }
+
+    public void softShuffle() {
+        int min = 0, max = definitionList.size();
+
+        //int randomIndex = ThreadLocalRandom.current().nextInt(min, definitionList.size() + 1);
+
+        Random r = new Random();
+
+        int randomIndex = r.nextInt(max - min) + min;
+
+        String newDefinition = definitionList.get(randomIndex);
+
+
+        Object[] shuffleKeys = questionHashMap.keySet().toArray();
+        Object key = shuffleKeys[new Random().nextInt(shuffleKeys.length)];
+
+        //Assign each Definition per button press until 10 answers submitted
+        textViewDefinition.setText(newDefinition);
+
+        String correctAnswer = questionHashMap.get(newDefinition);
+
+        //This randomizes which button the correct answer will appear on
+        int correctAnswerLocation = r.nextInt(5 - 1) + 1;
+
+        //Take random int 1-4 and use that to assign the location of the correct answer
+        switch (correctAnswerLocation) {
+            case 1:
+                btnAnswer1.setText(correctAnswer);
+                break;
+            case 2:
+                btnAnswer2.setText(correctAnswer);
+                break;
+            case 3:
+                btnAnswer3.setText(correctAnswer);
+                break;
+            case 4:
+                btnAnswer4.setText(correctAnswer);
+                break;
+        }
+
+        ArrayList<String> usedAnswers = new ArrayList<>();
+        usedAnswers.add(correctAnswer);
+        currentCorrectAnswer = correctAnswer;
+
+        for (int a = 0; a < 4; a++) {
+
+            int randWrongAnswer = r.nextInt(answerList.size());
+
+            if (answerList.get(randWrongAnswer).equals(correctAnswer)) {
+                //Prevent the answer value from escaping this loop until it is not the correct answer
+                do {
+                    randWrongAnswer = r.nextInt(answerList.size());
+                } while (answerList.get(randWrongAnswer).equals(correctAnswer));
+                continue;
+            }
+            if (usedAnswers.contains(answerList.get(randWrongAnswer))) {
+                continue;
+            }
+            usedAnswers.add(answerList.get(randWrongAnswer));
+        }
+
+        for (int b = 0; b < usedAnswers.size(); b++) {
+            switch (b) {
+                case 1:
+                    if (b == correctAnswerLocation) {
+                        continue;
+                    } else {
+                        btnAnswer1.setText(usedAnswers.get(b));
+                    }
+                    break;
+                case 2:
+                    if (b == correctAnswerLocation) {
+                        continue;
+                    } else {
+                        btnAnswer2.setText(usedAnswers.get(b));
+                    }
+                    break;
+                case 3:
+                    if (b == correctAnswerLocation) {
+                        continue;
+                    } else {
+                        btnAnswer3.setText(usedAnswers.get(b));
+                    }
+                    break;
+                case 4:
+                    if (b == correctAnswerLocation) {
+                        continue;
+                    } else {
+                        btnAnswer4.setText(usedAnswers.get(b));
+                    }
+                    break;
+            }
+        }
     }
 }
