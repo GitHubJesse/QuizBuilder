@@ -2,6 +2,7 @@ package com.example.w0299104.quizbuilder;
 
 import android.content.Intent;
 //import android.support.design.widget.Snackbar;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +43,10 @@ public class QuizActivity extends AppCompatActivity {
     String currentCorrectAnswer;
 
     TextView textViewDefinition;
+    TextView textViewLastAnswer;
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
+
+    int totalQuestions = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,7 @@ public class QuizActivity extends AppCompatActivity {
         readAndParseRawText();
 
         textViewDefinition = (TextView) findViewById(R.id.textViewDefinition);
+        textViewLastAnswer = (TextView) findViewById(R.id.textViewLastAnswer);
 
         btnAnswer1 = (Button) findViewById(R.id.btnAnswer1);
         btnAnswer2 = (Button) findViewById(R.id.btnAnswer2);
@@ -73,7 +78,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(1);
-                if(questionsAnswered >= 10){
+                if(questionsAnswered >= totalQuestions){
                     displayScoreScreen(view);
                 } else {
                     shuffleKeys();
@@ -85,7 +90,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(2);
-                if(questionsAnswered >= 10){
+                if(questionsAnswered >= totalQuestions){
                     displayScoreScreen(view);
                 } else {
                     shuffleKeys();
@@ -97,7 +102,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(3);
-                if(questionsAnswered >= 10){
+                if(questionsAnswered >= totalQuestions){
                     displayScoreScreen(view);
                 } else {
                     shuffleKeys();
@@ -109,7 +114,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(4);
-                if(questionsAnswered >= 10){
+                if(questionsAnswered >= totalQuestions){
                     displayScoreScreen(view);
                 } else {
                     shuffleKeys();
@@ -154,10 +159,12 @@ public class QuizActivity extends AppCompatActivity {
 
         if (answerCorrect) {
             Toast.makeText(this,"Correct",Toast.LENGTH_LONG).show();
+            textViewLastAnswer.setTextColor(Color.parseColor("#32CD32"));
         } else {
             Toast.makeText(this,"Incorrect",Toast.LENGTH_LONG).show();
+            textViewLastAnswer.setTextColor(Color.parseColor("#ff0000"));
         }
-
+        textViewLastAnswer.setText(textViewDefinition.getText().toString()+"'s salary is "+currentCorrectAnswer);
     }
 
     //Very verbose function, will likely comment a lot to remember each steps purpose
@@ -275,7 +282,16 @@ public class QuizActivity extends AppCompatActivity {
         String txtLine = "";
         ArrayList<String> lines = new ArrayList<>();
 
-        InputStream is = getResources().openRawResource(R.raw.definitions);
+
+
+
+
+        ////Used to be R.raw.definitions for the assignment
+        InputStream is = getResources().openRawResource(R.raw.hockeycaphits);
+
+
+
+
 
         StringBuilder buildString = new StringBuilder();
 
