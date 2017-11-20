@@ -1,8 +1,8 @@
 <resources>
 
     Main Menu Strings
-    <string name="app_name">Hockey</string>
-    <string name="mainMenuTitle">NHL Caphit Quiz</string>
+    <string name="app_name">App Dev Quiz 3</string>
+    <string name="mainMenuTitle">App Dev Quiz</string>
     <string name="mainMenuStart">START</string>
     <string name="editTextName"></string>
 

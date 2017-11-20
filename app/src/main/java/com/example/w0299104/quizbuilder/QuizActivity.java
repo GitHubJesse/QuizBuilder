@@ -9,11 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,7 +21,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -46,7 +42,7 @@ public class QuizActivity extends AppCompatActivity {
     TextView textViewLastAnswer;
     Button btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4;
 
-    int totalQuestions = 30;
+    int totalQuestions = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,7 +166,9 @@ public class QuizActivity extends AppCompatActivity {
             textViewLastAnswer.setTextColor(Color.parseColor("#CC3B1C"));
             textViewLastAnswer.setBackgroundColor(Color.parseColor("#C6DEDB"));
         }
-        textViewLastAnswer.setText(textViewDefinition.getText().toString()+"'s salary is "+currentCorrectAnswer);
+        //For Hockey Quiz
+        //textViewLastAnswer.setText(textViewDefinition.getText().toString()+"'s salary is "+currentCorrectAnswer);
+        textViewLastAnswer.setText(textViewDefinition.getText().toString()+" == "+currentCorrectAnswer);
     }
 
     //Very verbose function, will likely comment a lot to remember each steps purpose
@@ -291,8 +289,9 @@ public class QuizActivity extends AppCompatActivity {
 
 
 
-        ////Used to be R.raw.definitions for the assignment
-        InputStream is = getResources().openRawResource(R.raw.hockeycaphits);
+        /**Used to be R.raw.definitions for the assignment
+                        Change Quiz data here*/
+        InputStream is = getResources().openRawResource(R.raw.quiz4);
 
 
 
